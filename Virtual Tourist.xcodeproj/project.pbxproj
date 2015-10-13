@@ -15,6 +15,7 @@
 		2734086B1BCD479D00634318 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 273408691BCD479D00634318 /* LaunchScreen.storyboard */; };
 		273408761BCD479D00634318 /* Virtual_TouristTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273408751BCD479D00634318 /* Virtual_TouristTests.swift */; };
 		273408811BCD479D00634318 /* Virtual_TouristUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273408801BCD479D00634318 /* Virtual_TouristUITests.swift */; };
+		273408911BCD49F000634318 /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273408901BCD49F000634318 /* CoreDataStackManager.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		2734087C1BCD479D00634318 /* Virtual TouristUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Virtual TouristUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		273408801BCD479D00634318 /* Virtual_TouristUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Virtual_TouristUITests.swift; sourceTree = "<group>"; };
 		273408821BCD479D00634318 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		273408901BCD49F000634318 /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				2734085D1BCD479D00634318 /* AppDelegate.swift */,
+				273408901BCD49F000634318 /* CoreDataStackManager.swift */,
 				2734085F1BCD479D00634318 /* ViewController.swift */,
 				273408611BCD479D00634318 /* Main.storyboard */,
 				273408671BCD479D00634318 /* Assets.xcassets */,
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				273408601BCD479D00634318 /* ViewController.swift in Sources */,
+				273408911BCD49F000634318 /* CoreDataStackManager.swift in Sources */,
 				273408661BCD479D00634318 /* Virtual_Tourist.xcdatamodeld in Sources */,
 				2734085E1BCD479D00634318 /* AppDelegate.swift in Sources */,
 			);
@@ -485,6 +489,7 @@
 				273408871BCD479D00634318 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		273408881BCD479D00634318 /* Build configuration list for PBXNativeTarget "Virtual TouristTests" */ = {
 			isa = XCConfigurationList;
@@ -493,6 +498,7 @@
 				2734088A1BCD479D00634318 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2734088B1BCD479D00634318 /* Build configuration list for PBXNativeTarget "Virtual TouristUITests" */ = {
 			isa = XCConfigurationList;
@@ -501,6 +507,7 @@
 				2734088D1BCD479D00634318 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
