@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Virtual_Tourist" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="Virtual_Tourist" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +15,36 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ZVY-0K-JUq">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="IZg-Pi-Y1Q"/>
+                                    <outletCollection property="gestureRecognizers" destination="vyL-6F-FtF" appends="YES" id="zFp-Va-Odl"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZVY-0K-JUq" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="01D-oo-xFK"/>
+                            <constraint firstItem="ZVY-0K-JUq" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="dHK-6S-QKP"/>
+                            <constraint firstItem="ZVY-0K-JUq" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="eJ1-oz-qy5"/>
+                            <constraint firstItem="ZVY-0K-JUq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oLO-S7-Zh6"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="ZVY-0K-JUq" id="Z8o-bX-UGo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="vyL-6F-FtF">
+                    <connections>
+                        <action selector="dropPin:" destination="BYZ-38-t0r" id="gjr-KO-FYM"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="220" y="387"/>
         </scene>
     </scenes>
 </document>
