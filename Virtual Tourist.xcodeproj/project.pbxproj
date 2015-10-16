@@ -17,6 +17,8 @@
 		273408811BCD479D00634318 /* Virtual_TouristUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273408801BCD479D00634318 /* Virtual_TouristUITests.swift */; };
 		273408911BCD49F000634318 /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273408901BCD49F000634318 /* CoreDataStackManager.swift */; settings = {ASSET_TAGS = (); }; };
 		273408961BCD528900634318 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273408951BCD528900634318 /* Pin.swift */; settings = {ASSET_TAGS = (); }; };
+		2734CFC11BCEBD240047FB09 /* PhotosCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2734CFC01BCEBD240047FB09 /* PhotosCollectionViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		278BCA3B1BCF4D3700424344 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278BCA3A1BCF4D3700424344 /* Photo.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		273408821BCD479D00634318 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		273408901BCD49F000634318 /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 		273408951BCD528900634318 /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
+		2734CFC01BCEBD240047FB09 /* PhotosCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewController.swift; sourceTree = "<group>"; };
+		278BCA3A1BCF4D3700424344 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,8 @@
 				2734086C1BCD479D00634318 /* Info.plist */,
 				273408641BCD479D00634318 /* Virtual_Tourist.xcdatamodeld */,
 				273408951BCD528900634318 /* Pin.swift */,
+				2734CFC01BCEBD240047FB09 /* PhotosCollectionViewController.swift */,
+				278BCA3A1BCF4D3700424344 /* Photo.swift */,
 			);
 			path = "Virtual Tourist";
 			sourceTree = "<group>";
@@ -264,9 +270,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				278BCA3B1BCF4D3700424344 /* Photo.swift in Sources */,
 				273408601BCD479D00634318 /* MapViewController.swift in Sources */,
 				273408911BCD49F000634318 /* CoreDataStackManager.swift in Sources */,
 				273408661BCD479D00634318 /* Virtual_Tourist.xcdatamodeld in Sources */,
+				2734CFC11BCEBD240047FB09 /* PhotosCollectionViewController.swift in Sources */,
 				273408961BCD528900634318 /* Pin.swift in Sources */,
 				2734085E1BCD479D00634318 /* AppDelegate.swift in Sources */,
 			);

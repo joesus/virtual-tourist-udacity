@@ -12,15 +12,18 @@ import CoreData
 
 class MapViewController: UIViewController, MKMapViewDelegate {
     
+    @IBOutlet weak var photosCollectionViewHeight: NSLayoutConstraint!
     @IBOutlet weak var mapView: MKMapView!
+    
     var pins: [Pin]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.pins = fetchAllPins()
         addPins()
         setInitialLocation()
+        
+        // Set initial height of photosCollectionView to 0
+        photosCollectionViewHeight.constant = 0.0
     }
     
     func fetchAllPins() -> [Pin] {
@@ -32,24 +35,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
-    func addPins() {
-        // create pins
-        if let pins = self.pins {
-            for pin in pins {
-                let lat = CLLocationDegrees(pin.latitude as Double)
-                let long = CLLocationDegrees(pin.longitude)
-                
-                // The lat and long are used to create a CLLocationCoordinates2D instance.
-                let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-                
-                let annotation = MKPointAnnotation()
-                annotation.coordinate = coordinate
-                
-                self.mapView.addAnnotation(annotation)
-            }
-        }
-    }
-
     // MARK - CoreData Methods
 
     lazy var sharedContext: NSManagedObjectContext = {
@@ -108,6 +93,16 @@ extension MapViewController {
         return pinView
     }
     
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        photosCollectionViewHeight.constant = 500
+
+        let childVC = self.childViewControllers[0] as! PhotosCollectionViewController
+        // calls the
+        childVC.getImagesFromFlickr(view)
+        // focus the map on the pin
+        mapView.setCenterCoordinate(view.annotation!.coordinate, animated: true)
+    }
+
     func saveMapPosition() {
         let centerCoordinate = getCenterCoordinate()
         // User NSUserDefaults for initial location later will user core data entities for pins
@@ -127,5 +122,28 @@ extension MapViewController {
         Pin(latitude: latitude, longitude: longitude, context: self.sharedContext)
         saveContext()
         self.mapView.addAnnotation(pin)
+    }
+    
+    @IBAction func dismissCollectionView(sender: UITapGestureRecognizer) {
+        photosCollectionViewHeight.constant = 0.0
+    }
+    
+    func addPins() {
+        // create pins
+        self.pins = fetchAllPins()
+        if let pins = self.pins {
+            for pin in pins {
+                let lat = CLLocationDegrees(pin.latitude as Double)
+                let long = CLLocationDegrees(pin.longitude)
+                
+                // The lat and long are used to create a CLLocationCoordinates2D instance.
+                let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = coordinate
+                
+                self.mapView.addAnnotation(annotation)
+            }
+        }
     }
 }
