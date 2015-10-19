@@ -35,6 +35,24 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
+    func fetchPhotosForPin(pin: Pin) {
+        let fetchRequest = NSFetchRequest(entityName: "Photo")
+        fetchRequest.predicate = NSPredicate(format: "location == %@", pin)
+        
+        let childVC = self.childViewControllers[0] as! PhotosCollectionViewController
+        do {
+            let photos = try sharedContext.executeFetchRequest(fetchRequest) as! [Photo]
+            if photos.count < 1 {
+                childVC.getImagesFromFlickr(pin)
+            } else {
+                childVC.photos = photos
+                childVC.collectionView?.reloadData()
+            }
+        } catch {
+            childVC.getImagesFromFlickr(pin)
+        }
+    }
+    
     // MARK - CoreData Methods
 
     lazy var sharedContext: NSManagedObjectContext = {
@@ -96,13 +114,9 @@ extension MapViewController {
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         photosCollectionViewHeight.constant = 500
 
-        let childVC = self.childViewControllers[0] as! PhotosCollectionViewController
-
         // get the pin associated with the coordinates
         let pin = self.pins?.filter({ $0.longitude == view.annotation?.coordinate.longitude && $0.latitude == view.annotation?.coordinate.latitude }).first
-        
-        
-        childVC.getImagesFromFlickr(pin!)
+        fetchPhotosForPin(pin!)
         
         // focus the map on the pin
         mapView.setCenterCoordinate(view.annotation!.coordinate, animated: true)
