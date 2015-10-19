@@ -97,8 +97,13 @@ extension MapViewController {
         photosCollectionViewHeight.constant = 500
 
         let childVC = self.childViewControllers[0] as! PhotosCollectionViewController
-        // calls the
-        childVC.getImagesFromFlickr(view)
+
+        // get the pin associated with the coordinates
+        let pin = self.pins?.filter({ $0.longitude == view.annotation?.coordinate.longitude && $0.latitude == view.annotation?.coordinate.latitude }).first
+        
+        
+        childVC.getImagesFromFlickr(pin!)
+        
         // focus the map on the pin
         mapView.setCenterCoordinate(view.annotation!.coordinate, animated: true)
     }
@@ -115,13 +120,14 @@ extension MapViewController {
         // Create pin
         let point = sender.locationInView(self.mapView)
         let coordinate = self.mapView.convertPoint(point, toCoordinateFromView: self.mapView)
-        let pin = MKPointAnnotation()
-        pin.coordinate = coordinate
-        let latitude = Float(pin.coordinate.latitude)
-        let longitude = Float(pin.coordinate.longitude)
-        Pin(latitude: latitude, longitude: longitude, context: self.sharedContext)
+        let pointAnnotation = MKPointAnnotation()
+        pointAnnotation.coordinate = coordinate
+        let latitude = Double(pointAnnotation.coordinate.latitude)
+        let longitude = Double(pointAnnotation.coordinate.longitude)
+        let pin = Pin(latitude: latitude, longitude: longitude, context: self.sharedContext)
         saveContext()
-        self.mapView.addAnnotation(pin)
+        self.pins?.append(pin)
+        self.mapView.addAnnotation(pointAnnotation)
     }
     
     @IBAction func dismissCollectionView(sender: UITapGestureRecognizer) {

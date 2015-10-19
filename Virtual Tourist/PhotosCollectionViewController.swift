@@ -35,11 +35,11 @@ class PhotosCollectionViewController: UICollectionViewController, UICollectionVi
         self.view.backgroundColor = UIColor.grayColor()
     }
    
-    func getImagesFromFlickr(annoation: MKAnnotationView) {
+    func getImagesFromFlickr(pin: Pin) {
         // reset photos to nothing
         self.photos = [Photo]()
 
-        if let bbox = formatBoundingBox(annoation) {
+        if let bbox = formatBoundingBox(pin) {
             /* 2 - API method arguments */
             let methodArguments = [
                 "method": METHOD_NAME,
@@ -75,8 +75,10 @@ class PhotosCollectionViewController: UICollectionViewController, UICollectionVi
                                         if let imageData = NSData(contentsOfURL: imageURL!) {
                                             dispatch_async(dispatch_get_main_queue(), {
                                                 let image = UIImage(data: imageData)!
-                                                // TODO - fetch from coredata
-                                                let pic = Photo(image: image)
+                                                // TODO - save a location to the photo when I figure out how to pass pins through.
+                                                let pic = Photo(image: image, context: self.sharedContext)
+                                                pic.location = pin
+                                                self.saveContext()
                                                 self.photos.append(pic)
                                                 self.collectionView?.reloadData()
                                             })
@@ -129,7 +131,7 @@ class PhotosCollectionViewController: UICollectionViewController, UICollectionVi
         cell.backgroundColor = UIColor.grayColor()
         // Configure the cell
         let imageView = UIImageView(frame: CGRectMake(0, 0, 100, 100))
-        imageView.image = self.photos[indexPath.row].image!
+        imageView.image = UIImage(data: self.photos[indexPath.row].photoData!)
         cell.addSubview(imageView)
         return cell
     }
@@ -174,9 +176,9 @@ class PhotosCollectionViewController: UICollectionViewController, UICollectionVi
     }
     */
     
-    func formatBoundingBox(annotation: MKAnnotationView) -> String? {
-        let latitude = Double((annotation.annotation!.coordinate.latitude))
-        let lng = Double((annotation.annotation!.coordinate.longitude))
+    func formatBoundingBox(pin: Pin) -> String? {
+        let latitude = Double(pin.latitude)
+        let lng = Double(pin.longitude)
     
         // 111 kilometers / 1000 = 111 meters.
         // 1 degree of latitude = ~111 kilometers.
